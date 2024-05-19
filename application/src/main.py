@@ -1,4 +1,4 @@
-from functions import *
+from functions import main
 from logger import setup_logger
 
 setup_logger()
