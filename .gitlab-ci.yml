@@ -1,0 +1,23 @@
+workflow:
+  name: vSphere Month Report
+
+stages:          
+  - build
+
+default:
+  image: bitnami/python
+
+build-job:       
+  stage: build
+  script:
+    - pip install -r requirements.txt
+    - python application/src/main.py
+    - ls ./application/reports/
+  artifacts:
+    name: "vSphere Month Report $CI_COMMIT_TIMESTAMP"
+    paths:
+      - ./application/reports/*
+    untracked: false
+    when: on_success
+    expire_in: 30 days
+
